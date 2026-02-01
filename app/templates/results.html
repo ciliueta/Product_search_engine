@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados para "{{ query }}"</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <div style="margin-top: 2rem; display: flex; align-items: center; justify-content: space-between;">
+            <a href="/" style="color: var(--text-muted); text-decoration: none;">&larr; Voltar</a>
+            <h2 style="margin: 0;">Resultados para: <span style="color: var(--primary);">{{ query }}</span></h2>
+        </div>
+
+        {% if not results %}
+        <div class="loading">
+            <p>Nenhum produto encontrado ou erro ao buscar.</p>
+        </div>
+        {% else %}
+        <div class="results-grid">
+            {% for product in results %}
+            <div class="product-card">
+                <div class="product-image">
+                    {% if product.image %}
+                    <img src="{{ product.image }}" alt="{{ product.title }}">
+                    {% else %}
+                    <div style="color: black;">Sem Imagem</div>
+                    {% endif %}
+                </div>
+                <div class="product-info">
+                    <div>
+                        <div class="product-source">{{ product.source }}</div>
+                        <h3 class="product-title" title="{{ product.title }}">{{ product.title }}</h3>
+                    </div>
+                    <div>
+                        <div class="product-price">{{ product.price }}</div>
+                        <a href="{{ product.link }}" target="_blank" class="buy-btn">Ver na Loja</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+</body>
+
+</html>

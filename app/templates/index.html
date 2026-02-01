@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Busca de Produtos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="hero">
+            <h1>Encontre o Melhor Preço</h1>
+            <form action="/search" method="GET" class="search-box">
+                <input type="text" name="query" class="search-input" placeholder="O que você procura hoje?" required>
+                <button type="submit" class="search-btn">Buscar</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
